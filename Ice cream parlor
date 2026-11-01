@@ -1,0 +1,50 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'icecreamParlor' function below.
+#
+# The function is expected to return an INTEGER_ARRAY.
+# The function accepts following parameters:
+#  1. INTEGER m
+#  2. INTEGER_ARRAY arr
+#
+
+def icecreamParlor(m, arr):
+    out = []
+    n = len(arr)
+    for i in range(n):
+        for j in range(i+1,n):
+            k = arr[i] + arr[j]
+            if k == m:
+                i = i+1
+                j = j+1
+                out.append(i)
+                out.append(j)
+                return out
+
+      
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input().strip())
+
+    for t_itr in range(t):
+        m = int(input().strip())
+
+        n = int(input().strip())
+
+        arr = list(map(int, input().rstrip().split()))
+
+        result = icecreamParlor(m, arr)
+
+        fptr.write(' '.join(map(str, result)))
+        fptr.write('\n')
+
+    fptr.close()
